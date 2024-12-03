@@ -1,7 +1,7 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Form from './components/Form';
-import RecipePage from './components/RecipePage';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Form from "./pages/Form/Form";
+import RecipePage from "./pages/RecipePage/RecipePage";
 
 const App = () => {
   return (

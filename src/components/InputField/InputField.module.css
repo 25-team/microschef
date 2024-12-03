@@ -1,0 +1,20 @@
+input {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-button);
+  color: var(--color-text);
+  background-color: var(--color-form-background);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 10px;
+  width: 100%;
+}
+
+input:focus {
+  border: 2px solid var(--color-list-highlight);
+  outline: none;
+  color: var(--color-text);
+}
+
+.input::placeholder {
+  color: var(--color-form-text);
+}

@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button";
+import Dropdown from "../../components/Dropdown/Dropdown";
+import InputField from "../../components/InputField/InputField";
+import styles from "./Form.module.css";
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -28,86 +32,88 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.formWrapper} onSubmit={handleSubmit}>
       <div>
         <label>
-          Пол:
-          <select
+          <Dropdown
+            placeholder="Пол"
             name="gender"
             value={formData.gender}
             onChange={handleChange}
+            options={[
+              { value: "мужчина", label: "Мужчина" },
+              { value: "женщина", label: "Женщина" },
+            ]}
             required
-          >
-            <option value="">Выберите</option>
-            <option value="мужчина">Мужчина</option>
-            <option value="женщина">Женщина</option>
-          </select>
+          />
         </label>
       </div>
       <div>
         <label>
-          Возраст:
-          <input
-            type="number"
+          <InputField
+            type="textarea"
             name="age"
             value={formData.age}
             onChange={handleChange}
+            placeholder="Возраст"
             required
           />
         </label>
       </div>
       <div>
         <label>
-          Рост (см):
-          <input
-            type="number"
+          <InputField
+            type="textarea"
             name="height"
             value={formData.height}
             onChange={handleChange}
+            placeholder="Рост"
             required
           />
         </label>
       </div>
       <div>
         <label>
-          Вес (кг):
-          <input
-            type="number"
+          <InputField
+            type="textarea"
             name="weight"
             value={formData.weight}
             onChange={handleChange}
+            placeholder="Вес"
             required
           />
         </label>
       </div>
       <div>
         <label>
-          Желаемый результат:
-          <select
+          <Dropdown
+            placeholder="Желаемый результат"
             name="goal"
             value={formData.goal}
             onChange={handleChange}
-            required
-          >
-            <option value="">Выберите</option>
-            <option value="похудение">Похудение</option>
-            <option value="набор мышечной массы">Набор мышечной массы</option>
-            <option value="рекомпозиция">Рекомпозиция</option>
-          </select>
-        </label>
-      </div>
-      <div>
-        <label>
-          Продукты в холодильнике:
-          <textarea
-            name="fridgeItems"
-            value={formData.fridgeItems}
-            onChange={handleChange}
+            options={[
+              { value: "похудение", label: "Похудение" },
+              { value: "набор мышечной массы", label: "Набор мышечной массы" },
+              { value: "рекомпозиция", label: "Рекомпозиция" },
+            ]}
             required
           />
         </label>
       </div>
-      <button type="submit">Отправить</button>
+      <div>
+        <label>
+          Что у тебя в холодильнике?
+          <InputField
+            type="textarea"
+            name="fridgeItems"
+            value={formData.fridgeItems}
+            onChange={handleChange}
+            placeholder="Введите продукты"
+            required
+          />
+        </label>
+      </div>
+      <Button type="submit">Перейти к рецептам</Button>
     </form>
   );
 };

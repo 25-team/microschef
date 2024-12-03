@@ -1,0 +1,19 @@
+:root {
+  --font-primary: "TT Norms Pro", sans-serif;
+  --font-size-h1: 70px;
+  --font-size-h2: 22px;
+  --font-size-button: 18px;
+
+  --color-text: #013c01;
+  --color-text-secondary: #f1f5f1;
+  --color-button: #8bcd9e;
+  --color-button-light: #a9bea9;
+  --color-text-button: white;
+  --color-shadow: #5e946d;
+  --color-form-background: #f1f5f1;
+  --color-form-text: #a9bea9;
+  --color-list-highlight: #d3d8d3;
+
+  --border-radius: 18px;
+  --transition: 0.3s ease;
+}

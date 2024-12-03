@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { getGPTResponse } from "../api";
+import { getGPTResponse } from "../../api";
 
 const RecipePage = () => {
   const { state } = useLocation();

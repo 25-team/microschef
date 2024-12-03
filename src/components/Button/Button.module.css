@@ -1,0 +1,54 @@
+.button {
+  font-size: var(--font-size-button);
+  background-color: var(--color-button);
+  color: var(--color-text-button);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0px 4px var(--color-shadow);
+}
+
+.button:hover {
+  transform: scale(0.99);
+  box-shadow: none;
+}
+
+.button:active {
+  transform: scale(0.98);
+  box-shadow: none;
+}
+
+.button:disabled {
+  background-color: var(--color-list-highlight);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Вариации кнопок */
+.default {
+  background-color: var(--color-button);
+}
+
+.main{
+  color: var(--color-text)
+}
+
+.icon {
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-form-background);
+  color: var(--color-text);
+}
+
+.loading {
+  background-color: var(--color-form-background);
+  color: var(--color-text-secondary);
+  pointer-events: none;
+  cursor: progress;
+}
