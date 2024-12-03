@@ -1,0 +1,41 @@
+.splashContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ffffff;
+}
+
+.animationWrapper {
+  margin-bottom: 20px;
+}
+
+.title {
+  font-family: "TT Norms Pro", sans-serif;
+  font-size: 24px;
+  color: #013c01;
+  margin-bottom: 20px;
+}
+
+.progressBarWrapper {
+  width: 80%;
+  height: 8px;
+  background-color: #f1f5f1;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.progressBar {
+  height: 100%;
+  background-color: #8bcd9e;
+  transition: width 0.2s ease;
+}
+
+.footer {
+  font-family: "TT Norms Pro", sans-serif;
+  font-size: 14px;
+  color: #013c01;
+  margin-top: 20px;
+}
