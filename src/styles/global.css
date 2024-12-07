@@ -1,0 +1,25 @@
+body {
+    padding: 50px 15px;
+    font-family: var(--font-primary);
+    color: var(--color-text);
+}
+
+#root {
+    height: 100%;
+    animation-name: fadeIn;
+    animation-duration: 300ms;
+}
+
+#root > * {
+    animation-name: fadeIn;
+    animation-duration: 300ms;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+  }
