@@ -1,0 +1,38 @@
+.aboutPage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: url(../../img/bg-about.png) no-repeat 0 0;
+    background-size: cover;
+    padding: 100px 28px 70px;
+}
+
+.aboutPage_title {
+    font-size: var(--font-size-h2);
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: -0.3px;
+    text-align: center;
+
+    margin: 0 0 25px 0;
+}
+
+.aboutPage_text {
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 20px;
+
+    font-size: var(--font-size-button);
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0px;
+}
+
+.aboutPage_text p {
+    margin: 0 0 30px 0;
+}
+
+.aboutPage_textStrong {
+    font-weight: 700;
+}

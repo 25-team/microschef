@@ -18,6 +18,10 @@ const Title = () => {
     setTimeout(() => navigate("/form"), 300);
   };
 
+  const handleAboutBtn = () => {
+    setTimeout(() => navigate("/about"), 300);
+  };
+
   return (
       <div className={styles.titlePage}>
         <main className={styles.titlePage_main}>
@@ -53,6 +57,7 @@ const Title = () => {
             </Button>
             <Button
               className={`${styles.titlePage_otherBtn} ${styles.otherBtn}`}
+              onClick={handleAboutBtn}
             >
               <img src={AboutBtnIco} alt="" className={styles.otherBtn_img} />
               <p className={styles.otherBtn_txt}>О боте</p>
