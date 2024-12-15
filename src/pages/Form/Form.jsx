@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Dropdown from "../../components/Dropdown/Dropdown";
 import InputField from "../../components/InputField/InputField";
+import BackButton from "../../components/BackButton/BackButton";
+import Fridge from "../../components/Fridge/Fridge";
 import styles from "./Form.module.css";
+
+import Plus from "../../img/plus-black.svg";
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -12,8 +16,11 @@ const Form = () => {
     weight: "",
     height: "",
     goal: "",
-    fridgeItems: "",
   });
+
+  const [fridgeItems, setFridgeItems] = useState({});
+  const [showPopup, setShowPopup] = useState(false);
+  const [showScroll, setShowScroll] = useState(false);
 
   const navigate = useNavigate();
 
@@ -26,39 +33,61 @@ const Form = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const prompt = `Я ${formData.gender}, мне ${formData.age} лет, мой рост ${formData.height} см, я вешу ${formData.weight} кг. Моя цель — ${formData.goal}. Сейчас у меня из продуктов есть только ${formData.fridgeItems}. Придумай мне рецепты на завтрак, обед и ужин только из тех продуктов, которые у меня есть (не используй сторонние продукты, только специи). Рассчитай КБЖУ за день.`;
+    const prompt = `Я ${formData.gender}, мне ${formData.age} лет, мой рост ${
+      formData.height
+    } см, я вешу ${formData.weight} кг. Моя цель — ${
+      formData.goal
+    }. Сейчас у меня из продуктов есть только ${Object.values(fridgeItems).join(
+      ", "
+    )}. Придумай мне рецепты на завтрак, обед и ужин только из тех продуктов, которые у меня есть (не используй сторонние продукты, только специи). Рассчитай КБЖУ за день.`;
 
     navigate("/recipes", { state: { prompt } });
   };
 
+  const handleAddProduct = () => {
+    setShowPopup(true);
+  };
+
+  useEffect(() => {
+    const productList = document.querySelector("#productList");
+    if (
+      Object.values(fridgeItems).length > 3 &&
+      Object.values(fridgeItems).length !== 0
+    )
+      productList.style.overflowY = "scroll";
+  }, [fridgeItems]);
+
   return (
     <form className={styles.formWrapper} onSubmit={handleSubmit}>
-      <div>
-        <label>
-          <Dropdown
-            placeholder="Пол"
-            name="gender"
-            value={formData.gender}
-            onChange={handleChange}
-            options={[
-              { value: "мужчина", label: "Мужчина" },
-              { value: "женщина", label: "Женщина" },
-            ]}
-            required
-          />
-        </label>
-      </div>
-      <div>
-        <label>
-          <InputField
-            type="textarea"
-            name="age"
-            value={formData.age}
-            onChange={handleChange}
-            placeholder="Возраст"
-            required
-          />
-        </label>
+      <BackButton />
+      <div className={styles.form__row}>
+        <div className={styles.form__input}>
+          <label>
+            <Dropdown
+              placeholder="Пол"
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              options={[
+                { value: "мужчина", label: "Мужчина" },
+                { value: "женщина", label: "Женщина" },
+              ]}
+              required
+            />
+          </label>
+        </div>
+        <div className={styles.form__input}>
+          <label>
+            <InputField
+              type="textarea"
+              name="age"
+              value={formData.age}
+              onChange={handleChange}
+              placeholder="Возраст"
+              required
+            />
+          </label>
+        </div>
       </div>
       <div>
         <label>
@@ -100,20 +129,38 @@ const Form = () => {
           />
         </label>
       </div>
-      <div>
-        <label>
+      <div className={styles.form__fridge_container}>
+        <label className={styles.fridgeOpn__txt}>
           Что у тебя в холодильнике?
-          <InputField
-            type="textarea"
-            name="fridgeItems"
-            value={formData.fridgeItems}
-            onChange={handleChange}
-            placeholder="Введите продукты"
-            required
-          />
         </label>
+        <button
+          onClick={handleAddProduct}
+          className={`${styles.form__fridgeOpn} ${styles.fridgeOpn}`}
+        >
+          <p className={styles.fridgeOpn__txt}>Добавить продукт</p>
+          <img src={Plus} alt="" className={styles.fridgeOpn__ico} />
+        </button>
+        {Object.values(fridgeItems).length !== 0 && (
+          <div className={styles.form__fridge}>
+            <div className={styles.form__fridge_list} id="productList">
+              {Object.values(fridgeItems).map((item, i) => (
+                <div className={styles.form__fridge_item} key={i}>
+                  <p className={styles.form__fridge_item_num}>{++i}</p>
+                  <p className={styles.form__fridge_item_name}>{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
       <Button type="submit">Перейти к рецептам</Button>
+      {showPopup && (
+        <Fridge
+          closePopup={() => setShowPopup(false)}
+          setFridgeItems={(item) => setFridgeItems(item)}
+          fridgeItems={fridgeItems}
+        />
+      )}
     </form>
   );
 };
