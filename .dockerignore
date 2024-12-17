@@ -1,15 +1,3 @@
-# Исключаем папки и файлы, которые не нужны для сборки
 node_modules
 dist
-build
 .git
-
-# Исключаем временные файлы редакторов
-*.log
-*.tmp
-*.cache
-
-# Исключаем конкретные файлы Docker, но только если они не нужны
-docker-compose.yml
-Dockerfile
-Dockerfile.prod
