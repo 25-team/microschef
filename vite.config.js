@@ -3,6 +3,11 @@ import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
 export default {
+  css: {
+    modules: {
+      scopeBehaviour: 'local',
+    }
+  },
   server: {
     proxy: {
       '/api': {
