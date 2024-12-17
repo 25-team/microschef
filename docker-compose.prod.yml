@@ -1,0 +1,8 @@
+services:
+  microschef:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: microschef-prod
+    ports:
+      - '5000:80' # Привязываем порт 5000 на хосте к порту 80 в контейнере

@@ -1,0 +1,10 @@
+services:
+  microschef:
+    build: .                      # Собираем образ на основе Dockerfile
+    container_name: microschef    # Имя контейнера
+    ports:
+      - '5173:5173'               # Прокидываем порт 5173 для Vite
+    volumes:
+      - .:/app                    # Монтируем текущую папку в контейнер
+      - /app/node_modules         # Исключаем node_modules
+    command: npm run dev -- --host # Запуск с флагом --host
