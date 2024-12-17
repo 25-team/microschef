@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Lottie from "react-lottie";
 import animationData from "../../assets/animations/chefbot.json";
-import styles from "./SplashScreen.module.css";
+import styles from './SplashScreen.module.css'
 
 const SplashScreen = ({ onFinish }) => {
   const [progress, setProgress] = useState(0);
