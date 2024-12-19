@@ -1,13 +1,33 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { visualizer } from 'rollup-plugin-visualizer'
 
 export default defineConfig({
   base: './',
-  plugins: [react()],
+  plugins: [
+    react(),
+    visualizer({
+      filename: './dist/stats.html',
+      template: 'treemap',
+      open: true,
+    }),
+  ],
   css: {
     modules: {
       scopeBehaviour: 'local',
     },
+  },
+  build: {
+    outDir: 'dist',
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+        },
+      },
+    },
+    minify: 'terser',
   },
   server: {
     proxy: {

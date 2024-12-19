@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import styles from "./Dropdown.module.css";
+import PropTypes from 'prop-types'
+import { useState } from 'react'
+import styles from './Dropdown.module.css'
 
 const Dropdown = ({ options, value, onChange, placeholder, name }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
-  const selectedOption = options.find((option) => option.value === value);
+  const selectedOption = options.find((option) => option.value === value)
 
   const handleOptionClick = (option) => {
     onChange({
@@ -12,9 +13,9 @@ const Dropdown = ({ options, value, onChange, placeholder, name }) => {
         name: name,
         value: option.value,
       },
-    });
-    setIsOpen(false);
-  };
+    })
+    setIsOpen(false)
+  }
 
   return (
     <div className={styles.dropdown}>
@@ -25,7 +26,7 @@ const Dropdown = ({ options, value, onChange, placeholder, name }) => {
         onClick={() => setIsOpen(!isOpen)}
       >
         {selectedOption ? selectedOption.label : placeholder}
-        <span className={`${styles.arrow} ${isOpen ? styles.open : ""}`}></span>
+        <span className={`${styles.arrow} ${isOpen ? styles.open : ''}`}></span>
       </div>
       {isOpen && (
         <ul className={styles.dropdownList}>
@@ -41,7 +42,26 @@ const Dropdown = ({ options, value, onChange, placeholder, name }) => {
         </ul>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Dropdown;
+Dropdown.propTypes = {
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
+  name: PropTypes.string,
+}
+
+Dropdown.defaultProps = {
+  value: '',
+  placeholder: 'Выберите вариант',
+  name: '',
+}
+
+export default Dropdown

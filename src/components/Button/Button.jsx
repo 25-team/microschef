@@ -1,16 +1,29 @@
-import React from "react";
-import styles from "./Button.module.css";
+import PropTypes from 'prop-types'
+import styles from './Button.module.css'
 
-const Button = ({ children, isLoading, disabled, variant = "default", ...props }) => {
+const Button = ({ children, isLoading, disabled, variant = 'default', ...props }) => {
   return (
     <button
-      className={`${styles.button} ${styles[variant]} ${isLoading ? styles.loading : ""}`}
+      className={`${styles.button} ${styles[variant]} ${isLoading ? styles.loading : ''}`}
       disabled={disabled || isLoading}
       {...props}
     >
-      {isLoading ? "..." : children}
+      {isLoading ? '...' : children}
     </button>
-  );
-};
+  )
+}
 
-export default Button;
+Button.propTypes = {
+  children: PropTypes.node.isRequired,
+  isLoading: PropTypes.bool,
+  disabled: PropTypes.bool,
+  variant: PropTypes.oneOf(['default', 'primary', 'secondary']),
+}
+
+Button.defaultProps = {
+  isLoading: false,
+  disabled: false,
+  variant: 'default',
+}
+
+export default Button

@@ -1,23 +1,26 @@
-import React, { useState, useEffect } from "react";
-import Lottie from "react-lottie";
-import animationData from "../../assets/animations/chefbot.json";
+import PropTypes from 'prop-types'
+import { useState, useEffect } from 'react'
+import Lottie from 'react-lottie'
+import animationData from '../../assets/animations/chefbot.json'
 import styles from './SplashScreen.module.css'
 
 const SplashScreen = ({ onFinish }) => {
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(onFinish, 500);
-          return 100;
+          clearInterval(interval)
+          setTimeout(onFinish, 500)
+          return 100
         }
-        return prev + 2;
-      });
-    }, 30);
-  }, [onFinish]);
+        return prev + 2
+      })
+    }, 30)
+
+    return () => clearInterval(interval)
+  }, [onFinish])
 
   return (
     <div className={styles.splashContainer}>
@@ -28,7 +31,7 @@ const SplashScreen = ({ onFinish }) => {
             autoplay: true,
             animationData: animationData,
             rendererSettings: {
-              preserveAspectRatio: "xMidYMid slice",
+              preserveAspectRatio: 'xMidYMid slice',
             },
           }}
           height={200}
@@ -44,7 +47,11 @@ const SplashScreen = ({ onFinish }) => {
       </div>
       <p className={styles.footer}>Powered by YandexGPT</p>
     </div>
-  );
-};
+  )
+}
 
-export default SplashScreen;
+SplashScreen.propTypes = {
+  onFinish: PropTypes.func.isRequired,
+}
+
+export default SplashScreen

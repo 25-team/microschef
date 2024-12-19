@@ -1,5 +1,5 @@
-# Используем официальный образ Node.js
-FROM node:18
+# Первый этап: сборка проекта
+FROM node:18 AS build
 
 # Устанавливаем рабочую директорию
 WORKDIR /app
@@ -10,13 +10,20 @@ COPY package*.json ./
 # Устанавливаем зависимости
 RUN npm install
 
-# Копируем весь исходный код проекта
-COPY package.json .
-COPY src ./src
-COPY public ./public
+# Копируем исходный код
+COPY . .
 
-# Открываем порт для Vite
-EXPOSE 5173
+# Собираем проект
+RUN npm run build
 
-# Запускаем приложение через Vite с флагом --host
-CMD ["npm", "run", "dev", "--", "--host"]
+# Второй этап: запуск Nginx
+FROM nginx:stable-alpine
+
+# Копируем собранный проект в Nginx
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Экспонируем порт 80
+EXPOSE 80
+
+# Запускаем Nginx
+CMD ["nginx", "-g", "daemon off;"]
