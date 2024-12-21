@@ -42,12 +42,12 @@ const Title = () => {
         <div className={styles.titlePage_other}>
           <p className={styles.titlePage_otherTxt}>Другое</p>
           <div className={styles.titlePage_otherBtns}>
-            <Button
+            {/* <Button
               className={`${styles.titlePage_otherBtn} ${styles.otherBtn}`}
             >
               <img src={StoryBtnIco} alt="" className={styles.otherBtn_img} />
               <p className={styles.otherBtn_txt}>История</p>
-            </Button>
+            </Button> */}
             <Button
               className={`${styles.titlePage_otherBtn} ${styles.otherBtn}`}
             >

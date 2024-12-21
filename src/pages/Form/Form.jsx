@@ -20,6 +20,7 @@ const Form = () => {
 
   const [fridgeItems, setFridgeItems] = useState({})
   const [showPopup, setShowPopup] = useState(false)
+  const [activeBtn, setActiveBtn] = useState(false)
 
   const navigate = useNavigate()
 
@@ -56,9 +57,26 @@ const Form = () => {
       productList.style.overflowY = 'scroll'
   }, [fridgeItems])
 
+  useEffect(() => {
+    let formCheck = true;
+    for (let key of Object.keys(formData)) {
+      if (!formData[key]) {
+        formCheck = false
+      }
+    }
+    let allFormFill = formCheck
+    if (allFormFill && Object.keys(fridgeItems).length >= 5) {
+      setActiveBtn(true)
+    }
+  }, [fridgeItems, formData])
+
+  const handleBackBtn = () => {
+    setTimeout(() => navigate("/"), 300);
+  };
+
   return (
     <form className={styles.formWrapper} onSubmit={handleSubmit}>
-      <BackButton />
+      <BackButton onClick={handleBackBtn}/>
       <div className={styles.form__row}>
         <div className={styles.form__input}>
           <label>
@@ -153,7 +171,7 @@ const Form = () => {
           </div>
         )}
       </div>
-      <Button type='submit'>Перейти к рецептам</Button>
+      <Button type='submit' inactive={!activeBtn}>Перейти к рецептам</Button>
       {showPopup && (
         <Fridge
           closePopup={() => setShowPopup(false)}

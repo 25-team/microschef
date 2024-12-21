@@ -31,7 +31,7 @@
   background-color: var(--color-button);
 }
 
-.main{
+.main {
   color: var(--color-text)
 }
 
@@ -51,4 +51,21 @@
   color: var(--color-text-secondary);
   pointer-events: none;
   cursor: progress;
+}
+
+.inactive {
+  box-sizing: border-box;
+  border: 2px solid rgb(169, 190, 169);
+  border-radius: 17.52px;
+  background: rgb(241, 245, 241);
+  pointer-events: none;
+  cursor: default;
+  box-shadow: none;
+  color: rgba(1, 60, 1, 0.3);
+}
+
+.white {
+  background: rgb(255, 255, 255);
+  color: rgb(94, 148, 109);
+  border: 2px solid rgb(94, 148, 109);
 }

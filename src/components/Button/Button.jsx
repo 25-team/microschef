@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
 import styles from './Button.module.css'
 
-const Button = ({ children, isLoading, disabled, variant = 'default', ...props }) => {
+const Button = ({ children, isLoading, disabled, inactive,variant = 'default', ...props }) => {
   return (
     <button
-      className={`${styles.button} ${styles[variant]} ${isLoading ? styles.loading : ''}`}
+      className={`${styles.button} ${styles[variant]} ${isLoading ? styles.loading : ''} ${inactive ? styles.inactive : ''}`}
       disabled={disabled || isLoading}
       {...props}
     >

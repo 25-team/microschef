@@ -3,6 +3,14 @@ body {
     color: var(--color-text);
 }
 
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
 #root {
     height: 100%;
     animation-name: fadeIn;

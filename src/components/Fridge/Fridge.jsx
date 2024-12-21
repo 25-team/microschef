@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Button from '../../components/Button/Button'
 import InputField from '../../components/InputField/InputField'
 import Plus from '../../img/plus-gray.svg'
@@ -7,6 +7,7 @@ import styles from './Fridge.module.css'
 
 const Fridge = ({ closePopup, setFridgeItems, fridgeItems }) => {
   const [countItems, setCountItems] = useState(7)
+  const [activeBtn, setActiveBtn] = useState(false)
 
   const drawInputs = () => {
     const inputs = []
@@ -47,6 +48,12 @@ const Fridge = ({ closePopup, setFridgeItems, fridgeItems }) => {
     closePopup()
   }
 
+  useEffect(() => {
+      if (Object.keys(fridgeItems).length >= 5) {
+        setActiveBtn(true)
+      }
+    }, [fridgeItems])
+
   return (
     <div className={styles.fridge}>
       <div className={styles.fridge__overlay}></div>
@@ -60,7 +67,7 @@ const Fridge = ({ closePopup, setFridgeItems, fridgeItems }) => {
         >
           <img src={Plus} alt='ADD' />
         </button>
-        <Button onClick={doneBtnHandler}>Готово</Button>
+        <Button onClick={doneBtnHandler} inactive={!activeBtn}>{activeBtn ? 'Готово' : 'Минимум 5'}</Button>
       </div>
     </div>
   )
